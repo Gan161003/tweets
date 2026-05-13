@@ -1,10 +1,5 @@
 streamlit
 pandas
-snscrape
 textblob
 openpyxl
-streamlit
-pandas
 git+https://github.com/JustAnotherArchivist/snscrape.git
-textblob
-openpyxl
