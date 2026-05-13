@@ -599,27 +599,46 @@ if st.button("Fetch Tweets"):
 
         with st.spinner("Fetching tweets..."):
 
-            for i, tweet in enumerate(scraper.get_items()):
+            # for i, tweet in enumerate(scraper.get_items()):
 
-                if i >= tweet_limit:
-                    break
+            #     if i >= tweet_limit:
+            #         break
 
-                tweets_data.append({
+            #     tweets_data.append({
 
-                    "Tweet ID": tweet.id,
-                    "Date": tweet.date,
-                    "Username": tweet.user.username,
-                    "Display Name": tweet.user.displayname,
-                    "Tweet": tweet.rawContent,
-                    "Likes": tweet.likeCount,
-                    "Retweets": tweet.retweetCount,
-                    "Replies": tweet.replyCount,
-                    "Quotes": tweet.quoteCount,
-                    "Language": tweet.lang,
-                    "Source": tweet.sourceLabel,
-                    "URL": tweet.url,
+            #         "Tweet ID": tweet.id,
+            #         "Date": tweet.date,
+            #         "Username": tweet.user.username,
+            #         "Display Name": tweet.user.displayname,
+            #         "Tweet": tweet.rawContent,
+            #         "Likes": tweet.likeCount,
+            #         "Retweets": tweet.retweetCount,
+            #         "Replies": tweet.replyCount,
+            #         "Quotes": tweet.quoteCount,
+            #         "Language": tweet.lang,
+            #         "Source": tweet.sourceLabel,
+            #         "URL": tweet.url,
 
-                })
+            #     })
+            try:
+                for i, tweet in enumerate(scraper.get_items()):
+            
+                    if i >= tweet_limit:
+                        break
+            
+                    tweets_data.append({
+                        "Tweet ID": tweet.id,
+                        "Date": tweet.date,
+                        "Username": tweet.user.username,
+                        "Tweet": tweet.rawContent,
+                        "Likes": tweet.likeCount,
+                        "Retweets": tweet.retweetCount,
+                        "Replies": tweet.replyCount,
+                        "URL": tweet.url
+                    })
+            
+            except Exception as e:
+                st.error(f"Twitter blocked request: {e}")
 
         # =====================================================
         # DATAFRAME
